@@ -26,16 +26,20 @@ app.get('/api/health', async (req, res) => {
     const [rows] = await pool.query(`
       SELECT
         DATABASE() AS database_name,
-        VERSION() AS mysql_version
+        VERSION() AS mysql_version,
+        @@hostname AS server_host,
+        @@port AS server_port
     `);
 
     res.json({
       status: 'Connected',
       database: rows[0].database_name,
-      mysqlVersion: rows[0].mysql_version
+      mysqlVersion: rows[0].mysql_version,
+      serverHost: rows[0].server_host,
+      serverPort: rows[0].server_port
     });
   } catch (error) {
-    console.error('Database error:', error.code || error.message);
+    console.error('Database error:', error.message);
 
     res.status(500).json({
       status: 'Database connection failed',
@@ -47,10 +51,12 @@ app.get('/api/health', async (req, res) => {
 // Get all manga series and inventory totals
 app.get('/api/manga', async (req, res) => {
   try {
-    // Temporary diagnostic: check the database and record count
+    // Diagnostic: identify the database and count manga records
     const [dbCheck] = await pool.query(`
       SELECT
         DATABASE() AS database_name,
+        @@hostname AS server_host,
+        @@port AS server_port,
         COUNT(*) AS manga_count
       FROM manga_series
     `);
