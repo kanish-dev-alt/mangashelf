@@ -1,17 +1,22 @@
 
-
 require('dotenv').config();
 
 const mysql = require('mysql2/promise');
 
 const dbConfig = {
-  host: process.env.DB_HOST || '127.0.0.1',
-  port: Number(process.env.DB_PORT || 3306),
-  user: process.env.DB_USER || 'root',
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT || 27892),
+  user: process.env.DB_USER || 'avnadmin',
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME || 'manga_library_management',
+  database: process.env.DB_NAME || 'defaultdb',
+
+  // Use Aiven's CA certificate when provided
+  ssl: process.env.DB_HOST
+  ? { rejectUnauthorized: false }
+  : undefined,
+
   waitForConnections: true,
-  connectionLimit: 10,
+  connectionLimit: 5,
   queueLimit: 0
 };
 
@@ -44,3 +49,4 @@ async function testConnection() {
 testConnection();
 
 module.exports = pool;
+
