@@ -71,7 +71,7 @@ MangaShelf is a web-based manga library management system that allows users to b
 
 6. Open your browser and visit:
 
-   **http://localhost:3000**
+   https://mangashelf-s8rr.onrender.com
 
    The local port may differ if you configure a different `PORT` value.
 

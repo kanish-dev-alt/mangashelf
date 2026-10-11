@@ -139,6 +139,6 @@ app.use('/api', (req, res) => {
 });
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`MangaShelf server running at http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`MangaShelf server running on port ${PORT}`);
 });
