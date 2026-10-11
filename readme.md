@@ -1,122 +1,93 @@
-# MangaShelf 📚
+# 📚 MangaShelf — Manga Library Management System
 
-A Manga Library Management System built to help users explore manga series and view their available volumes through a clean, user-friendly interface.
+MangaShelf is a web-based manga library management system that allows users to browse manga series and view their volumes through a simple interface.
 
-## ✨ Features
+## 🌐 Live Demo
 
-- Browse manga series
-- Search for manga
-- View manga cover images
-- Explore volume details for each series
-- REST API for retrieving manga and volume data
-- MySQL database integration
+**[Visit MangaShelf](https://mangashelf-s8rr.onrender.com)**
 
-## 🛠️ Technologies Used
+## ✨ Technologies Used
 
 - **Frontend:** HTML, CSS, JavaScript
 - **Backend:** Node.js, Express.js
 - **Database:** MySQL
-- **API:** REST API
+- **Cloud Database:** Aiven
+- **Deployment:** Render
+- **Version Control:** Git and GitHub
 
-## 📂 Project Structure
+## 🚀 Features
 
-```text
-mangashelf/
-├── config/
-│   └── db.js
-├── database/
-│   └── manga_library.sql
-├── public/
-│   ├── css/
-│   │   └── style.css
-│   ├── image/
-│   ├── js/
-│   │   └── app.js
-│   ├── favicon.png
-│   └── index.html
-├── routes/
-├── controllers/
-├── .gitignore
-├── package.json
-├── package-lock.json
-├── server.js
-└── README.md
-```
+- Browse manga series.
+- View manga information and available volumes.
+- Store manga records in a MySQL database.
+- Access the website through a browser on desktop or mobile.
+- Use a cloud-hosted backend and database.
 
-## ⚙️ Prerequisites
+## 💻 Run Locally
 
-Before running this project, install:
+### Prerequisites
 
-- [Node.js](https://nodejs.org/)
-- [MySQL](https://dev.mysql.com/downloads/)
+- Node.js and npm
+- MySQL database
+- Git (optional)
 
-## 🚀 Getting Started
+### Installation
 
-### 1. Clone the repository
+1. Clone the repository:
 
-```bash
-git clone https://github.com/kanish-dev-alt/mangashelf.git
-cd mangashelf
-```
+   ```bash
+   git clone https://github.com/kanish-dev-alt/mangashelf.git
+   ```
 
-### 2. Install dependencies
+2. Open the project folder:
 
-```bash
-npm install
-```
+   ```bash
+   cd mangashelf
+   ```
 
-### 3. Configure environment variables
+3. Install dependencies:
 
-Create a `.env` file in the project root and add your own MySQL connection details:
+   ```bash
+   npm install
+   ```
 
-```env
-DB_HOST=localhost
-DB_USER=your_mysql_username
-DB_PASSWORD=your_mysql_password
-DB_NAME=manga_library_management
-PORT=3000
-```
+4. Create a `.env` file in the project root and configure your database connection:
 
-Use the environment variable names expected by your `config/db.js` file.
+   ```env
+   DB_HOST=your_database_host
+   DB_PORT=3306
+   DB_USER=your_database_user
+   DB_PASSWORD=your_database_password
+   DB_NAME=your_database_name
+   ```
 
-### 4. Set up the database
+   Replace these example values with your own database credentials. Never upload your `.env` file or database password to GitHub.
 
-Import `database/manga_library.sql` into MySQL if that file is included in the repository.
+5. Start the server:
 
-### 5. Start the application
+   ```bash
+   node server.js
+   ```
 
-```bash
-npm start
-```
+6. Open your browser and visit:
 
-If your `package.json` uses a different start script, run the appropriate command defined there.
+   **http://localhost:3000**
 
-### 6. Open the application
+   The local port may differ if you configure a different `PORT` value.
 
-Visit:
+## ☁️ Deployment
 
-http://localhost:3000
+MangaShelf is deployed using Render, with Aiven providing the cloud MySQL database.
 
-## 🔌 API Endpoints
-
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/api/health` | Check server health |
-| GET | `/api/manga` | Retrieve manga series |
-| GET | `/api/manga/:id/volumes` | Retrieve volumes for a manga series |
-
-## 🔐 Security
-
-- Keep `.env` out of version control.
-- Never publish database passwords or other secrets.
-- Use environment variables for sensitive configuration.
+- **Live application:** https://mangashelf-s8rr.onrender.com
+- **GitHub repository:** https://github.com/kanish-dev-alt/mangashelf
 
 ## 👨‍💻 Author
 
 **Kanish Kumar**
 
-- GitHub: [@kanish-dev-alt](https://github.com/kanish-dev-alt)
+GitHub: [@kanish-dev-alt](https://github.com/kanish-dev-alt)
 
 ---
 
-Built as a Manga Library Management System project.
+*Built as a web development project to practice frontend development, backend APIs, database integration, and cloud deployment.*
