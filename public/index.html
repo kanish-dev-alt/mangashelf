@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#d40000">
+ <title>MangaShelf | Manga Library</title>
+ <link rel="icon" href="/favicon.png?v=2" type="image/png">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="background-shape"></div>
+
+  <div class="site-shell">
+    <header class="navbar">
+      <a class="brand" href="#home">MangaShelf</a>
+
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a class="active" href="#latest">Manga</a>
+        <a href="#popular">Most Popular</a>
+        <a href="#about">About</a>
+      </nav>
+
+      <label class="search-box">
+        <span>⌕</span>
+        <input id="searchInput" type="search" placeholder="Search manga..." aria-label="Search manga">
+      </label>
+
+      <button class="profile-button" type="button" title="Library profile">
+        <span class="profile-avatar">L</span>
+        <span>LUMEN</span>
+      </button>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+    </header>
+
+    <main id="home">
+      <section class="featured-section" id="popular">
+        <div class="section-heading">
+          <h1>BEST NEW MANGA IN <span>2026</span></h1>
+          <div class="carousel-controls">
+            <button id="previousButton" aria-label="Previous manga">‹</button>
+            <button id="nextButton" aria-label="Next manga">›</button>
+          </div>
+        </div>
+
+        <div class="featured-grid" id="featuredGrid"></div>
+        <div class="carousel-dots" id="carouselDots" aria-label="Featured manga pages"></div>
+      </section>
+
+      <section class="latest-section" id="latest">
+        <div class="latest-heading">
+          <h2>LATEST MANGA ON <span>MangaShelf</span></h2>
+          <p id="resultCount">Browse the collection</p>
+        </div>
+
+        <div class="latest-grid" id="latestGrid"></div>
+        <p class="empty-state" id="emptyState" hidden>No manga found. Try another search.</p>
+      </section>
+
+      <section class="about-section" id="about">
+        <h2>Your manga collection, in one place.</h2>
+        <p>Discover series, explore volumes, and manage your library.</p>
+      </section>
+    </main>
+
+    <footer>
+      <span>MangaShelf</span>
+    <p>Manga Library Management System · 2026</p>
+    </footer>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
+
