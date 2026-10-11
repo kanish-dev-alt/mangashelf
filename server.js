@@ -23,9 +23,11 @@ app.get('/', (req, res) => {
 // Test database connection
 app.get('/api/health', async (req, res) => {
   try {
-    const [rows] = await pool.query(
-      'SELECT DATABASE() AS database_name, VERSION() AS mysql_version'
-    );
+    const [rows] = await pool.query(`
+      SELECT
+        DATABASE() AS database_name,
+        VERSION() AS mysql_version
+    `);
 
     res.json({
       status: 'Connected',
@@ -45,6 +47,17 @@ app.get('/api/health', async (req, res) => {
 // Get all manga series and inventory totals
 app.get('/api/manga', async (req, res) => {
   try {
+    // Temporary diagnostic: check the database and record count
+    const [dbCheck] = await pool.query(`
+      SELECT
+        DATABASE() AS database_name,
+        COUNT(*) AS manga_count
+      FROM manga_series
+    `);
+
+    console.log('Manga API database check:', dbCheck);
+
+    // Fetch manga and volume totals
     const [rows] = await pool.query(`
       SELECT
         s.series_id,
@@ -58,8 +71,8 @@ app.get('/api/manga', async (req, res) => {
         COUNT(v.volume_id) AS total_volumes,
         COALESCE(SUM(v.total_copies), 0) AS total_copies,
         COALESCE(SUM(v.available_copies), 0) AS available_copies
-      FROM manga_series s
-      LEFT JOIN manga_volumes v
+      FROM manga_series AS s
+      LEFT JOIN manga_volumes AS v
         ON s.series_id = v.series_id
       GROUP BY
         s.series_id,
@@ -70,7 +83,7 @@ app.get('/api/manga', async (req, res) => {
         s.genre,
         s.description,
         s.cover_image_url
-      ORDER BY s.title
+      ORDER BY s.series_id
     `);
 
     res.json({
@@ -131,7 +144,7 @@ app.get('/api/manga/:id/volumes', async (req, res) => {
   }
 });
 
-// Handle unknown API routes (keep this after all API routes)
+// Handle unknown API routes
 app.use('/api', (req, res) => {
   res.status(404).json({
     error: 'API endpoint not found'
